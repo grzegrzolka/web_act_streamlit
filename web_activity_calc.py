@@ -38,7 +38,7 @@ class Isotopes_in_Waste:
 # title of the app
 st.title('Przeliczanie aktywności izotopu')
 
-path = Path(__file__).parent / "isotope.csv"
+path = Path(__file__).parent / "Isotope.csv"
 # dataframe loading
 df = pd.read_csv(path , sep = ";", index_col = 0, 
         names = ["Name", "ExemptionConcentr", "ExemptionActivity", "HalfLife"])
