@@ -36,7 +36,7 @@ class Isotopes_in_Waste:
 
 
 # title of the app
-st.title('Przeliczanie aktywności izotopu')
+st.subheader('Isotope activity calculator')
 
 path = Path(__file__).parent / "Isotope.csv"
 # dataframe loading
@@ -49,9 +49,9 @@ df['HalfLife'] = df['HalfLife'].str.replace(',', '.').astype(float)
 st.write(df)
 
 # input dates
-start_date = st.date_input("Podaj datę początkową", min_value="1900-01-01", max_value="2300-01-01")
-end_date = st.date_input("Podaj datę końcową", min_value="1900-01-01", max_value="2300-01-01")
-elapsed_years = (end_date - start_date).days/365
+start_date = st.date_input("Enter beginng date:", min_value="1900-01-01", max_value="2300-01-01")
+end_date = st.date_input("Enter end date:", min_value="1900-01-01", max_value="2300-01-01")
+elapsed_years = round((end_date - start_date).days/365,2)
 elapsed_months = int(elapsed_years*12)
 
 st.divider()
@@ -63,8 +63,8 @@ if 'isotopes' not in st.session_state:
     st.session_state['isotopes'] = []
 
 def manager():
-    isotope_name = st.selectbox(label="podaj izotop", options = isotopes_names)
-    activity = st.number_input("Podaj aktywność")
+    isotope_name = st.selectbox(label="Enter isotope:", options = isotopes_names)
+    activity = st.number_input("Enter activity:")
     add_button = st.button("Add", key='add_button')
     clear_button = st.button("Clear", key='clear', type="primary")
     selected_isotope_names = [isotope.isotope_name for isotope in st.session_state['isotopes']]
@@ -81,6 +81,13 @@ def manager():
         st.session_state['isotopes'] = []
         selected_isotope_names = [isotope.isotope_name for isotope in st.session_state['isotopes']]
         plt.clf()
+
+st.markdown("###### :green[Start date:] {}".format(start_date))
+st.markdown("###### :green[End date:] {}".format(end_date))
+st.markdown("###### :blue[Elapsed years:] {}".format(elapsed_years))
+st.markdown("###### :blue[Elapsed months:] {}".format(elapsed_months))
+
+st.divider()
 
 manager()
 
@@ -112,10 +119,13 @@ plt.legend()  #add a legend
 st.pyplot(plt)
 
 #print dataframe
-st.write("Data początkowa", start_date )
-st.write("Data końcowa", end_date )
-st.write("Elapsed years: ", round(elapsed_years,2))
-st.write("Elapsed months: ", elapsed_months)
-selected_isotopes_df = pd.DataFrame(data, columns=['Nazwa izotopu', 'Halflife', 'Aktywnosc poczatkowa', 'Przeliczona aktywność', 'Aktywność po 3 latach'])
+#st.write("Data początkowa", start_date )
+#st.write("Data końcowa", end_date )
+#st.write("Elapsed years: ", round(elapsed_years,2))
+#st.write("Elapsed months: ", elapsed_months)
+
+st.divider()  
+
+selected_isotopes_df = pd.DataFrame(data, columns=['Isotope', 'Halflife', 'Begining Act', 'Calculated Act', 'Act after 3 Years'])
 st.write(selected_isotopes_df )
 
