@@ -27,6 +27,7 @@ import numpy as np
 import datetime
 import matplotlib.pyplot as plt
 import math
+from pathlib import Path
 
 class Isotopes_in_Waste:
     def __init__(self, isotope, activity):
@@ -37,8 +38,9 @@ class Isotopes_in_Waste:
 # title of the app
 st.title('Przeliczanie aktywności izotopu')
 
+path = Path(__file__).parent / "isotope.csv"
 # dataframe loading
-df = pd.read_csv('isotope.csv', sep = ";", index_col = 0, 
+df = pd.read_csv(path , sep = ";", index_col = 0, 
         names = ["Name", "ExemptionConcentr", "ExemptionActivity", "HalfLife"])
 df.loc[df['HalfLife'] == "#N/D!", 'HalfLife'] = '0'
 df['HalfLife'] = df['HalfLife'].str.replace(',', '.').astype(float)
