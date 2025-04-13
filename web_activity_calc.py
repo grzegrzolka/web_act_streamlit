@@ -34,11 +34,11 @@ class Isotopes_in_Waste:
         self.isotope_name = isotope
         self.activity = activity
 
-st.markdown("###### :blue[author: Andrzej Grzegrzłka]" )
-st.markdown("###### :blue[contact: andrzej.grzegrzolka@zuop.gov.pl]")
+st.markdown("###### :blue[author: ]Andrzej Grzegrzłka" )
+st.markdown("###### :blue[contact: ]andrzej.grzegrzolka@zuop.gov.pl")
 
 # title of the app
-st.subheader('Isotope activity calculator 222')
+st.subheader('Isotope activity calculator')
 
 path = Path(__file__).parent / "Isotope.csv"
 # dataframe loading
