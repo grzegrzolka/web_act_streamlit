@@ -38,7 +38,7 @@ st.markdown("###### :blue[author: Andrzej Grzegrzłka]" )
 st.markdown("###### :blue[contact: andrzej.grzegrzolka@zuop.gov.pl]")
 
 # title of the app
-st.subheader('Isotope activity calculator')
+st.subheader('Isotope activity calculator 222')
 
 path = Path(__file__).parent / "Isotope.csv"
 # dataframe loading
