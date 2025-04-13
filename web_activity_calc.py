@@ -34,6 +34,8 @@ class Isotopes_in_Waste:
         self.isotope_name = isotope
         self.activity = activity
 
+st.markdown("###### :blue[author: Andrzej Grzegrzłka]" )
+st.markdown("###### :blue[contact: andrzej.grzegrzolka@zuop.gov.pl]")
 
 # title of the app
 st.subheader('Isotope activity calculator')
@@ -65,7 +67,7 @@ if 'isotopes' not in st.session_state:
 def manager():
     isotope_name = st.selectbox(label="Enter isotope:", options = isotopes_names)
     activity = st.number_input("Enter activity:")
-    add_button = st.button("Add", key='add_button')
+    add_button = st.button("Add isotope", key='add_button', type="primary")
     clear_button = st.button("Clear", key='clear', type="primary")
     selected_isotope_names = [isotope.isotope_name for isotope in st.session_state['isotopes']]
     if add_button:
