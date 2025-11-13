@@ -79,7 +79,7 @@ for isotope in st.session_state['isotopes']:
     halfLife = float(df.loc[isotope.isotope_name]["Desintegration [Years]"])
     calc_activity = round(isotope.activity * pow(math.e, -(math.log(2) * (elapsed_years / halfLife))),2)
     calc_3_year_activity = round(isotope.activity * pow(math.e, -(math.log(2) * (3 / halfLife))),2)
-    data.append([isotope.isotope_name, act_conc_limit, exemption_act, halfLife, isotope.activity, calc_activity])
+    data.append([isotope.isotope_name, act_conc_limit, exemption_act / 1000, halfLife, isotope.activity, calc_activity])
     
     #create plot
     activities_by_month = []
@@ -98,7 +98,7 @@ plt.legend()  #add a legend
 st.pyplot(plt)
 
 st.divider()  
-selected_isotopes_df = pd.DataFrame(data, columns=['Isotope', 'Act concent for exempt material (kBq/kg)', 'Act limit for exempt mat (Bq)', 'Desintegration [Years]', 'Begining Activity', 'Calculated Activity'])
+selected_isotopes_df = pd.DataFrame(data, columns=['Isotope', 'Act concent for exempt material [kBq/kg]', 'Act limit for exempt mat [kBq]', 'Desintegration [Years]', 'Begining Activity', 'Calculated Activity'])
 st.dataframe(selected_isotopes_df.T,  column_config= {"_index": st.column_config.Column("", width = "medium")})  #display dataframe with selected isotopes
 
 st.divider() 
